@@ -814,6 +814,7 @@ id all
 id always
 id amount
 id amount1
+id amount2
 id appro
 id async
 id attandance

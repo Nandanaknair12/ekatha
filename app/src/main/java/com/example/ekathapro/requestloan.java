@@ -70,12 +70,7 @@ public class requestloan extends AppCompatActivity {
 
                amount1=Integer.parseInt(amount.getText().toString());
 
-                if(date1.isEmpty())
-                {
-                    date.setError("enter date");
-                    date.requestFocus();
-                }
-                else if(amount1<100)
+                if(amount1<100)
                 {
                     amount.setError("enter amount");
                     amount.requestFocus();
@@ -90,6 +85,7 @@ public class requestloan extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(getApplicationContext(),"successfully submitted",Toast.LENGTH_LONG).show();
+                            amount.setText("");
 
                         }
                     });

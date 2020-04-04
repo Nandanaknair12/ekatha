@@ -20,13 +20,13 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences=getSharedPreferences("Memlogin",MODE_PRIVATE);
         String string=sharedPreferences.getString("member",null);
         if(string!=null) {
-            Intent inton = new Intent(getApplicationContext(), Presihome.class);
+            Intent inton = new Intent(getApplicationContext(), memlogged.class);
             startActivity(inton);
         }
         SharedPreferences sharedPreferences1=getSharedPreferences("unitpresi",MODE_PRIVATE);
         String presi=sharedPreferences1.getString("unitnum",null);
         if(presi!=null) {
-            Intent inton = new Intent(getApplicationContext(), memlogged.class);
+            Intent inton = new Intent(getApplicationContext(), Presihome.class);
             startActivity(inton);
         }
 
