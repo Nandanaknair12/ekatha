@@ -57,9 +57,9 @@ public class Adapterattendence extends RecyclerView.Adapter<Adapterattendence.Ow
                 Toast.makeText(context, "present", Toast.LENGTH_SHORT).show();
 
                     reference= FirebaseDatabase.getInstance().getReference().child(membs.get(position).getMward()).child(membs.get(position).getMunitnum()).child("Member").child(membs.get(position).getMuser()).child("Attendance").child(holder.currentDate);
-                    holder.attandanceClass.Date=holder.currentDate;
-                    holder.attandanceClass.present=true;
-                    reference.setValue(holder.attandanceClass);
+                    holder.attendenceClass.Date=holder.currentDate;
+                    holder.attendenceClass.present=true;
+                    reference.setValue(holder.attendenceClass);
                 }
 
 
@@ -74,9 +74,9 @@ public class Adapterattendence extends RecyclerView.Adapter<Adapterattendence.Ow
                 Toast.makeText(context, "absent", Toast.LENGTH_SHORT).show();
 
                     reference= FirebaseDatabase.getInstance().getReference().child(membs.get(position).getMward()).child(membs.get(position).getMunitnum()).child("Member").child(membs.get(position).getMuser()).child("Attendance").child(holder.currentDate);
-                    holder.attandanceClass.Date=holder.currentDate;
-                    holder.attandanceClass.present=false;
-                    reference.setValue(holder.attandanceClass);
+                    holder.attendenceClass.Date=holder.currentDate;
+                    holder.attendenceClass.present=false;
+                    reference.setValue(holder.attendenceClass);
                 }
 
         });
@@ -94,7 +94,7 @@ public class Adapterattendence extends RecyclerView.Adapter<Adapterattendence.Ow
         TextView t1;
         RadioButton r1,r2;
         RadioGroup radioGroup;
-        AttandanceClass attandanceClass;
+        AttendanceClass attendenceClass;
         String currentDate;
 
 
@@ -104,7 +104,7 @@ public class Adapterattendence extends RecyclerView.Adapter<Adapterattendence.Ow
             radioGroup=(RadioGroup)ownerView.findViewById(R.id.mpAttandence);
             r1=(RadioButton)ownerView.findViewById(R.id.male);
             r2=(RadioButton)ownerView.findViewById(R.id.female);
-            attandanceClass=new AttandanceClass();
+            attendenceClass=new AttendanceClass();
 
             Calendar c = Calendar.getInstance();
             SimpleDateFormat df = new SimpleDateFormat("yyyy,MM,dd");

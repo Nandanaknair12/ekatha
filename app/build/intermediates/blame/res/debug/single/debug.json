@@ -84,12 +84,12 @@
         "source": "C:\\Users\\user\\AndroidStudioProjects\\ekatha\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\tick.png"
     },
     {
-        "merged": "C:\\Users\\user\\AndroidStudioProjects\\ekatha\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\user\\AndroidStudioProjects\\ekatha\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_launcher_background.xml"
-    },
-    {
         "merged": "C:\\Users\\user\\AndroidStudioProjects\\ekatha\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_viewcomplaints.xml.flat",
         "source": "C:\\Users\\user\\AndroidStudioProjects\\ekatha\\app\\src\\main\\res\\layout\\activity_viewcomplaints.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\AndroidStudioProjects\\ekatha\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\user\\AndroidStudioProjects\\ekatha\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_launcher_background.xml"
     },
     {
         "merged": "C:\\Users\\user\\AndroidStudioProjects\\ekatha\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",

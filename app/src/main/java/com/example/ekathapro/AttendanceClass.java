@@ -1,16 +1,14 @@
 package com.example.ekathapro;
 
-public class AttandanceClass
-{
+public class AttendanceClass {
+
     String Date;
     Boolean present;
 
-    public AttandanceClass()
-    {
+    public AttendanceClass() {
     }
 
-    public AttandanceClass(String date, Boolean present)
-    {
+    public AttendanceClass(String date, Boolean present) {
         Date = date;
         this.present = present;
     }

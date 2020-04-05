@@ -1,21 +1,45 @@
 package com.example.ekathapro;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Calendar;
 
 public class viewattendance extends AppCompatActivity {
 
+    TextView date;
+    String datee;
+    String sdate;
+    String wardnum,unitnum,username;
+    Button searchattendance;
     Button b1,b2,b3,b4,b5,b6,b7,b8,b9;
+    AttendanceClass attendaneClass;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewattendance);
 
+        date=(TextView)findViewById(R.id.date2);
+        searchattendance=(Button)findViewById(R.id.searchattendance);
         b1=(Button)findViewById(R.id.memberlist);
         b2=(Button)findViewById(R.id.requestloan);
         b3=(Button)findViewById(R.id.viewattendance);
@@ -26,7 +50,72 @@ public class viewattendance extends AppCompatActivity {
         b8=(Button)findViewById(R.id.complaints);
         b9=(Button)findViewById(R.id.privacy);
 
-        b3.setOnClickListener(new View.OnClickListener() {
+        attendaneClass=new AttendanceClass();
+
+        SharedPreferences sharedPreferences=getSharedPreferences("Memlogin",MODE_PRIVATE);
+        wardnum=sharedPreferences.getString("ward",null);
+        unitnum=sharedPreferences.getString("unitnum",null);
+        username=sharedPreferences.getString("member",null);
+
+
+        final Calendar calendar=Calendar.getInstance();
+        final int year=calendar.get(calendar.YEAR);
+        final int month=calendar.get(calendar.MONTH);
+        final int day=calendar.get(calendar.DAY_OF_MONTH);
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog=new DatePickerDialog(viewattendance.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                        month = month + 1;
+                        String smonth = Integer.toString(month);
+                        String sday = Integer.toString(dayOfMonth);
+                        if (sday.length() == 1) {
+                            sday = "0" + sday;
+                        }
+                        if (smonth.length() == 1) {
+                            smonth = "0" + smonth;
+                        }
+                        datee = year + "," + smonth + "," + sday;
+                        date.setText(datee);
+                    }
+                },year,month,day);
+                datePickerDialog.show();
+            }
+        });
+
+        searchattendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                sdate=date.getText().toString();
+                databaseReference= FirebaseDatabase.getInstance().getReference().child(wardnum).child(unitnum).child(username).child("Attendance").child(sdate);
+                Query query=databaseReference.orderByChild("date").equalTo(datee);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        if(dataSnapshot.exists())
+                        {
+                            attendaneClass=dataSnapshot.getValue(AttendanceClass.class);
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),"Attendance is not available in this date",Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }
@@ -45,10 +134,10 @@ public class viewattendance extends AppCompatActivity {
                 startActivity(inten);
             }
         });
-        b4.setOnClickListener(new View.OnClickListener() {
+        b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent inten=new Intent(getApplicationContext(),viewthrift.class);
+                Intent inten=new Intent(getApplicationContext(),viewattendance.class);
                 startActivity(inten);
             }
         });
